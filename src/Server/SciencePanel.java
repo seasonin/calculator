@@ -2,6 +2,7 @@ package Server;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -19,7 +20,7 @@ public class SciencePanel extends JPanel{
 	public JTextArea ta;
 	public JRadioButton radian, angle, grad;
 	public ScienceListener slt;
-	//记录数据之用，避免重复使用静态变量，减少分配内存，提高程序效率
+	//slt记录数据之用，避免重复使用静态变量，减少分配内存，提高程序效率
 	
 	public SciencePanel() {
 		radian = new JRadioButton("弧度", true);
@@ -43,7 +44,6 @@ public class SciencePanel extends JPanel{
 		at.add(anglePanel);
 		at.add(timePanel);
 		//把角度面板和时间面板加入到at面板中
-		
 		anglePanel.setLayout(new GridLayout(1, 3));
 		ButtonGroup bgone = new ButtonGroup();
 		radian.addActionListener(new ScienceListener(this));
@@ -55,7 +55,7 @@ public class SciencePanel extends JPanel{
 		grad.addActionListener(new ScienceListener(this));
 		bgone.add(grad);
 		anglePanel.add(grad);
-		//把各个角度按钮加入到角度面板和按钮组中
+		//把弧度、角度、梯度按钮加入到角度面板和按钮组中，并注册ScienceListner监听器
 		
 		buttonPanel.setLayout(new GridLayout(6, 7, 2, 2));
 
@@ -65,6 +65,7 @@ public class SciencePanel extends JPanel{
 				"cos", "acos", "cosh", "4", "5", "6", "×", 
 				"tan", "atan", "tanh", "1", "2", "3", "÷", 
 				"Mod", "n!", "10ⁿ", "0", ".", "π", "=" };
+		//定义按钮键值
 		
 		for(String i : value) {
 			button = new JButton(i);

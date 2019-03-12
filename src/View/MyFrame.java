@@ -19,20 +19,26 @@ public class MyFrame extends JFrame {
 	public JPanel cardPanel;
 	public CardLayout cardLayout;
 	public JMenuBar mb;
-	JMenuItem science, it, relationship, quit, green, white, yellow, cyan, pink, clock, message;
+	JMenuItem clock, science, it, relationship, quit, green, white,
+		yellow, cyan, pink, blue, bigger, smaller, use, message;
 	//声明成员变量
+	public int fontSize = 20;
 	
 	MyFrame() {
 		
 		JMenu view = new JMenu("查看(V)");
 		view.setIcon(new GetImage().creat("view.png", 20, 20));
-		JMenu set = new JMenu("设置(S)");
-		set.setIcon(new GetImage().creat("set.png", 20, 20));
+		JMenu back = new JMenu("背景(B)");
+		back.setIcon(new GetImage().creat("back.png", 20, 20));
+		JMenu font = new JMenu("字体(F)");
+		font.setIcon(new GetImage().creat("font.png", 20, 20));
 		JMenu edit = new JMenu("编辑(E)");
 		edit.setIcon(new GetImage().creat("edit.png", 20, 20));
 		JMenu help = new JMenu("帮助(H)");
 		help.setIcon(new GetImage().creat("help.png", 20, 20));
 		//分别对菜单实例化，并设置相应的图标
+		clock = new JMenuItem("系统时间");
+		clock.setIcon(new GetImage().creat("clock.png", 20, 20));
 		science = new JMenuItem("科学型");
 		science.setIcon(new GetImage().creat("science.png", 20, 20));
 		it = new JMenuItem("IT型");
@@ -45,7 +51,11 @@ public class MyFrame extends JFrame {
 		yellow = new JMenuItem("黄色");
 		cyan = new JMenuItem("青色");
 		pink = new JMenuItem("粉色");
-		clock = new JMenuItem("系统时间");
+		blue = new JMenuItem("蓝色");
+		bigger = new JMenuItem("增大");
+		smaller = new JMenuItem("减小");
+		use = new JMenuItem("使用(U)");
+		use.setIcon(new GetImage().creat("hand.png", 20, 20));
 		message = new JMenuItem("关于 (A)");
 		message.setIcon(new GetImage().creat("me.png", 20, 20));
 		//分别对各菜单项实例化
@@ -54,35 +64,43 @@ public class MyFrame extends JFrame {
 		mb.add(edit);
 		mb.add(help);
 		//实例化菜单栏，把菜单加入到菜单栏中
+		view.add(clock);
+		clock.addActionListener(new MenuListen(this));
 		view.add(science);
 		science.addActionListener(new MenuListen(this));
-		view.add(it);
-		it.addActionListener(new MenuListen(this));
 		view.add(relationship);
 		relationship.addActionListener(new MenuListen(this));
+		view.add(it);
+		it.addActionListener(new MenuListen(this));
 		view.add(quit);
 		quit.setBackground(Color.RED);
 		quit.addActionListener(new MenuListen(this));
 		green.setBackground(Color.GREEN);
 		green.addActionListener(new MenuListen(this));
-		set.add(green);
+		back.add(green);
 		white.setBackground(Color.WHITE);
 		white.addActionListener(new MenuListen(this));
-		set.add(white);
+		back.add(white);
 		yellow.setBackground(Color.YELLOW);
 		yellow.addActionListener(new MenuListen(this));
-		set.add(yellow);
+		back.add(yellow);
 		cyan.setBackground(Color.CYAN);
 		cyan.addActionListener(new MenuListen(this));
-		set.add(cyan);
+		back.add(cyan);
 		pink.setBackground(Color.PINK);
 		pink.addActionListener(new MenuListen(this));
-		set.add(pink);
-		//set.addActionListener(new MenuListen(this));
-		edit.add(set);
-		clock.addActionListener(new MenuListen(this));
-		clock.setIcon(new GetImage().creat("clock.png", 20, 20));
-		help.add(clock);
+		back.add(pink);
+		blue.setBackground(Color.BLUE);
+		blue.addActionListener(new MenuListen(this));
+		back.add(blue);
+		edit.add(back);
+		bigger.addActionListener(new MenuListen(this));
+		font.add(bigger);
+		smaller.addActionListener(new MenuListen(this));
+		font.add(smaller);
+		edit.add(font);
+		use.addActionListener(new MenuListen(this));
+		help.add(use);
 		message.addActionListener(new MenuListen(this));
 		help.add(message);
 		//把菜单项加入到菜单中，并注册MenuLListen监听器

@@ -1,11 +1,13 @@
 package Listener;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.*;
 import javax.swing.*;
 
 import Server.*;
 import View.*;
+import DAO.*;
 
 
 public class MenuListen implements ActionListener {
@@ -86,14 +88,33 @@ public class MenuListen implements ActionListener {
 			return;
 		}
 		
-		if(value.equals("关于 (A)")) {
-			//通过把图标加入到JLable中再加入到JFrame中，显示开发者信息
-			JFrame f = new JFrame();
-			f.add(new JLabel(new ImageIcon("./src/Image/developer.png")));
-			f.setVisible(true);
-			f.setLocation(10, 200);
-			f.pack();
+		if(value.equals("蓝色")) {
+			this.setColor(Color.BLUE);
+			//选着蓝色菜单项，设置背景色为蓝色
+			return;
 		}
+		
+		if(value.equals("增大")) {
+			mf.fontSize += 5;
+			this.setFont(mf.fontSize);
+			//选着蓝色菜单项，设置背景色为蓝色
+			return;
+		}
+		
+		if(value.equals("减小")) {
+			mf.fontSize -= 5;
+			this.setFont(mf.fontSize);
+			//选着蓝色菜单项，设置背景色为蓝色
+			return;
+		}
+		
+		if(value.equals("关于 (A)")) 
+			//通过把图标加入到JLable中再加入到JFrame中，显示开发者信息
+			JOptionPane.showMessageDialog(null, new JLabel(new GetImage().creat("developer.png", 500, 450)), "开发者信息", JOptionPane.PLAIN_MESSAGE);
+		
+		if(value.equals("使用(U)")) 
+			//通过把图标加入到JLable中再加入到JFrame中，显示开发者信息
+			JOptionPane.showMessageDialog(null, new JLabel(new GetImage().creat("use.png", 500, 250)), "如何使用", JOptionPane.PLAIN_MESSAGE);		
 		
 		if(value.equals("系统时间")) 
 			JOptionPane.showMessageDialog(null, new TimePanel());
@@ -101,7 +122,14 @@ public class MenuListen implements ActionListener {
 			//其中TimePanel可获得动态的时间
 	}
 	
-	void setColor(Color color) {
+	private void setFont(int fontSize) {
+		//设置字体为宋体，大小为fonSize
+		mf.sciencePanel.ta.setFont(new Font("宋体", Font.PLAIN, fontSize));
+		mf.relationshipPanel.rta.setFont(new Font("宋体", Font.PLAIN,fontSize));
+		mf.itPanel.ita.setFont(new Font("宋体", Font.PLAIN, fontSize));
+	}
+	
+	private void setColor(Color color) {
 		//该方法可把菜单栏、各相应的Panel设置为参数color的颜色
 		mf.mb.setBackground(color);
 		mf.sciencePanel.at.setBorder(BorderFactory.createLineBorder(color));

@@ -11,7 +11,7 @@ public class RelationshipListener implements ActionListener{
 	RelationshipPanel rp;
 	
 	public RelationshipListener(){}
-	
+	//重构构造方法
 	public RelationshipListener(RelationshipPanel rp) {
 		this.rta = rp.rta;
 		this.rp = rp;
@@ -25,10 +25,13 @@ public class RelationshipListener implements ActionListener{
 			
 			if(rp.rsl.previousText.length()>2)
 			rp.rsl.previousText = rp.rsl.previousText.substring(0, rp.rsl.previousText.length()-2);
+			//文本域删除两个长度的字符
 			if(rp.rsl.previousText.length()>2)
 				rta.setText(judge(rp.rsl.previousText));
+				//文本域重新回显关系
 			else {
 				rta.setText("我的");
+				//设置文本域为"我的"内容
 				rp.rsl.previousText = "我的";
 				rp.pressed = false;
 			}
@@ -36,16 +39,19 @@ public class RelationshipListener implements ActionListener{
 		
 		else if(value.equals("C") && rta.getText().length()>0) {
 			rta.setText("我的");
+			//请空键，重置文本内容为“我的”
 			rp.rsl.previousText = "我的";
 			rp.pressed = false;
 		}
 		
 		else
 			if(rp.pressed) {
+				//非第一次输入关系，文本域追加“的”和事件值
 				rp.rsl.previousText += ("的" + value);
 				rta.setText(judge(rp.rsl.previousText));
 			}
 			else {
+				//第一次按下按钮，直接加入事件值
 				rp.rsl.previousText += value;
 				rta.setText(judge(rp.rsl.previousText));
 				rp.pressed = true;
@@ -53,7 +59,7 @@ public class RelationshipListener implements ActionListener{
 	}
 	
 	private String judge(String text) {
-	
+		//judge方法截取文本域的前三个字符并调用相应的方法进一步判断
 		if(text.subSequence(0, 3).equals("我的夫"))
 			return judge1(text);
 		
@@ -83,7 +89,7 @@ public class RelationshipListener implements ActionListener{
 		
 		return judge10(text);
 	} 
-	
+	//下面为进一步判断关系
 	private String judge1(String text) {
 		
 		if(text.equals("我的夫"))
